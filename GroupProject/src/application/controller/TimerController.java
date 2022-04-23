@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
+import application.model.AlarmModel;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -20,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -31,7 +34,12 @@ public class TimerController implements Initializable {
 	int minutes = 0;
 	int hours = 0;
 
+	int alarmN = 0;
+
 	final DateFormat formatTime = DateFormat.getInstance();
+
+	@FXML
+	private Pane alarmOn;
 
 	@FXML
 	private AnchorPane mainPane;
@@ -61,6 +69,16 @@ public class TimerController implements Initializable {
 				Calendar time = Calendar.getInstance();
 				currentTime.setText(formatTime.format(time.getTime()));
 
+				AlarmModel load = new AlarmModel();
+				try {
+					if (load.alarmOn("alarms.txt") != 0) {
+						alarmN = load.alarmOn("alarms.txt");
+						alarmOn.setVisible(true);
+					}
+				} catch (IOException | ParseException e) {
+					e.printStackTrace();
+				}
+
 				if (play) {
 					elapsedTime = elapsedTime + 1000;
 					hours = (elapsedTime / 3600000);
@@ -84,6 +102,14 @@ public class TimerController implements Initializable {
 	@FXML
 	void stop(ActionEvent event) {
 		play = false;
+	}
+
+	@FXML
+	void alarmOff(ActionEvent event) throws IOException {
+		alarmOn.setVisible(false);
+
+		AlarmModel remove = new AlarmModel();
+		remove.removeAlarm(alarmN - 1, "alarms.txt");
 	}
 
 	@FXML

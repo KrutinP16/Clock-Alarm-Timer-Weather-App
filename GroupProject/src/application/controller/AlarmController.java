@@ -32,6 +32,7 @@ public class AlarmController implements Initializable {
 	final DateFormat formatTime = DateFormat.getInstance();
 
 	boolean alarmOnOff = true;
+	int alarmN = 0;
 
 	@FXML
 	private Pane alarmOn;
@@ -81,7 +82,8 @@ public class AlarmController implements Initializable {
 	void add(ActionEvent event) throws IOException, ParseException {
 		timeSelect.setVisible(false);
 		AlarmModel add = new AlarmModel();
-		add.addAlarm(hour.getValue() + ":" + minute.getValue() + " " + when.getValue(), "alarms.txt");
+		add.addAlarm(hour.getValue() + ":" + String.format("%02d", minute.getValue()) + " " + when.getValue(),
+				"alarms.txt");
 
 		updateAlarmLists();
 	}
@@ -110,9 +112,13 @@ public class AlarmController implements Initializable {
 
 	// Turns off alarm
 	@FXML
-	void alarmOff(ActionEvent event) {
+	void alarmOff(ActionEvent event) throws IOException, ParseException {
 		alarmOn.setVisible(false);
-		alarmOnOff = false;
+
+		AlarmModel remove = new AlarmModel();
+		remove.removeAlarm(alarmN - 1, "alarms.txt");
+
+		updateAlarmLists();
 	}
 
 	// Takes user to Alarm scene
@@ -205,13 +211,15 @@ public class AlarmController implements Initializable {
 				AlarmModel load = new AlarmModel();
 
 				try {
-					if (load.alarmOn("alarms.txt") && alarmOnOff) {
+					if (load.alarmOn("alarms.txt") != 0) {
+						alarmN = load.alarmOn("alarms.txt");
 						alarmOn.setVisible(true);
-					} else {
-						alarmOnOff = true;
 					}
-
-					nextAlarm.setText(load.updateNextAlarm("alarms.txt"));
+					if (alarms1.getItems().isEmpty()) {
+						nextAlarm.setText("No Alarms Set");
+					} else {
+						nextAlarm.setText("Next Alarm: " + load.updateNextAlarm("alarms.txt"));
+					}
 				} catch (IOException | ParseException e) {
 					e.printStackTrace();
 				}

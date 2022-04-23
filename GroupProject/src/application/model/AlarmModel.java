@@ -42,7 +42,7 @@ public class AlarmModel {
 			FileWriter fw = new FileWriter(fileName, true);
 			BufferedWriter bw = new BufferedWriter(fw);
 
-			bw.append(alarm);
+			bw.append(LocalTime.parse(alarm, format).format(format));
 			bw.newLine();
 			bw.close();
 		}
@@ -123,10 +123,6 @@ public class AlarmModel {
 		ArrayList<String> alarms1List = loadAlarms1(fileName);
 		ArrayList<String> alarms2List = loadAlarms2(fileName);
 
-		if (alarms1List.isEmpty()) {
-			return "No Alarms Set";
-		}
-
 		LocalDateTime today = LocalDateTime.now();
 
 		LocalDateTime nextAlarmTime = LocalDateTime.MAX;
@@ -167,25 +163,28 @@ public class AlarmModel {
 	}
 
 	// Method that checks if any alarm matches current time
-	public boolean alarmOn(String fileName) throws IOException, ParseException {
+	public int alarmOn(String fileName) throws IOException, ParseException {
 		LocalTime today = LocalTime.now();
 
 		ArrayList<String> alarms1List = loadAlarms1(fileName);
 		ArrayList<String> alarms2List = loadAlarms2(fileName);
-
+		
+		int count = 1;
 		for (int i = 0; i < alarms1List.size(); i++) {
 			if (today.format(format).equals(LocalTime.parse(alarms1List.get(i), format).format(format))) {
-				return true;
+				return count;
 			}
+			count++;
 		}
 
 		for (int i = 0; i < alarms2List.size(); i++) {
 			if (today.format(format).equals(LocalTime.parse(alarms1List.get(i), format).format(format))) {
-				return true;
+				return count;
 			}
+			count++;
 		}
 
-		return false;
+		return 0;
 
 	}
 }
