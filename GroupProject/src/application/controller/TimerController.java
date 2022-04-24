@@ -27,6 +27,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+//DECLARE MY CLASS
 public class TimerController implements Initializable {
 	boolean play = false;
 	int elapsedTime = 0;
@@ -36,6 +37,7 @@ public class TimerController implements Initializable {
 
 	int alarmN = 0;
 
+	// CODE FOR THE FXML PARTS FOR THE TIMER
 	final DateFormat formatTime = DateFormat.getInstance();
 
 	@FXML
@@ -53,6 +55,7 @@ public class TimerController implements Initializable {
 	@FXML
 	private VBox timer;
 
+	// FXML BUTTON FOR RESET AND CONFIGURE THE CODE TO RESET TO 00:00:00
 	@FXML
 	void reset(ActionEvent event) {
 		play = false;
@@ -94,16 +97,19 @@ public class TimerController implements Initializable {
 		timeline.play();
 	}
 
+	//START THE BUTTON FOR THE TIMER
 	@FXML
 	void start(ActionEvent event) {
 		play = true;
 	}
 
+	//STOP BUTTON TO PAUSE THE TIMER
 	@FXML
 	void stop(ActionEvent event) {
 		play = false;
 	}
 
+	//CHECK FOR ALARM
 	@FXML
 	void alarmOff(ActionEvent event) throws IOException {
 		alarmOn.setVisible(false);
@@ -112,6 +118,7 @@ public class TimerController implements Initializable {
 		remove.removeAlarm(alarmN - 1, "alarms.txt");
 	}
 
+	//TAKE USER TO ALARM 
 	@FXML
 	void handleAlarm(ActionEvent event) throws IOException {
 		URL url = new File("Alarm.fxml").toURI().toURL();
