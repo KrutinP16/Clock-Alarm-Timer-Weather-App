@@ -199,7 +199,7 @@ public class AlarmController implements Initializable {
 
 	// Method that constantly runs and updates currentTime label to display the time
 	// at the moment. Also constantly looks for the next alarm and updates the
-	// nextAlarm label
+	// nextAlarm label and checks when it is time for an alarm to go off
 	private void bindToTime() {
 
 		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0), new EventHandler<ActionEvent>() {
