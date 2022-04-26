@@ -1,7 +1,7 @@
 # Name of Project: Alarm_Clock
 # Group 1
 # Group Members: Mohamed Uzair Anees, Ryan Harrison, Reez Khan, Joshua Mayfield, Krutin Patel
-# GroupProject is an app meant to allow users to set alarms for important times, and to time events
+# Alarm_Clock is an app meant to allow users to set alarms for important times, and to time events
 # Known Bugs: None
 # No login information needed
 # Java Version: 1.8 (8), Scenebuilder Version: 3
