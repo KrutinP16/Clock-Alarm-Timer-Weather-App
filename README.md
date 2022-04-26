@@ -7,7 +7,7 @@
 # Java Version: 1.8 (8), Scenebuilder Version: 3
 # How to clone with git in Eclipse
  1. Clone repository inside Eclipse using https://github.com/KrutinP16/Clock-Alarm-Timer-Weather-App as the URL
- 2. Make new JavaFX Project in Eclise
+ 2. Make new JavaFX Project in Eclipse
  3. Import Alarm_Clock project from repo into new JavaFX project
  4. If default-package with module-info.java exists after creating project, delete the class
  5. If JavaFX-SDK library exists in JavaFX project, remove from buildpath
