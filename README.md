@@ -1,4 +1,4 @@
-# Name of Project: GroupProject
+# Name of Project: Alarm_Clock
 # Group 1
 # Group Members: Mohamed Uzair Anees, Ryan Harrison, Reez Khan, Joshua Mayfield, Krutin Patel
 # GroupProject is an app meant to allow users to set alarms for important times, and to time events
