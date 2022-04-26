@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" styleClass="bodybg" stylesheets="@src/application/application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.TimerController">
+   <children>
+      <Circle accessibleRole="BUTTON" accessibleText="STOP" fill="#f7421d" layoutX="664.0" layoutY="520.0" radius="65.0" stroke="#922828" strokeLineCap="ROUND" />
+      <Label fx:id="timeLabel" alignment="CENTER" layoutX="215.0" layoutY="203.0" prefHeight="122.0" prefWidth="370.0" text="00:00:00" textFill="#faa873">
+         <font>
+            <Font name="Book Antiqua Bold Italic" size="75.0" />
+         </font>
+      </Label>
+      <Circle accessibleRole="BUTTON" accessibleText="RESET" fill="#effb0c" layoutX="395.0" layoutY="520.0" radius="65.0" stroke="#922828" strokeLineCap="ROUND" />
+      <Circle accessibleRole="BUTTON" accessibleText="START" fill="#1fff6b" layoutX="118.0" layoutY="520.0" radius="65.0" stroke="#922828" strokeLineCap="ROUND" />
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#reset" text="RESET" textFill="#86d025" translateX="350.0" translateY="495.0" translateZ="80.0">
+         <font>
+            <Font name="Arial Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#stop" text="STOP" textFill="#1b9ff7" translateX="625.0" translateY="495.0" translateZ="80.0">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutY="10.0" mnemonicParsing="false" onAction="#start" text="START" textFill="#e02727" translateX="85.0" translateY="495.0" translateZ="80.0">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <GridPane layoutY="650.0" prefHeight="150.0" prefWidth="800.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button alignment="CENTER" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleAlarm" prefHeight="150.0" prefWidth="839.0" style="-fx-border-color: #0b233f; -fx-border-width: 3;" text="ALARM">
+               <font>
+                  <Font name="System Bold" size="40.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting diffuseConstant="1.37">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="0.09019608050584793" green="0.9647058844566345" blue="0.16470588743686676" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
+            </Button>
+         </children>
+      </GridPane>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="800.0" style="-fx-background-color: #13c622;" text="TIMER" textAlignment="CENTER">
+         <font>
+            <Font name="Californian FB" size="28.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.39">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <Label fx:id="currentTime" alignment="CENTER" layoutX="37.0" layoutY="88.0" prefHeight="71.0" prefWidth="162.0" style="-fx-background-color: #13c622; -fx-border-color: black; -fx-border-width: 3;" text="Current Time" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="1.37">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.09019608050584793" green="0.9647058844566345" blue="0.16470588743686676" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </Label>
+      <Pane fx:id="alarmOn" layoutX="201.0" layoutY="184.0" prefHeight="289.0" prefWidth="418.0" style="-fx-background-color: mintcream; -fx-border-color: black; -fx-border-width: 3;" visible="false">
+         <children>
+            <GridPane prefHeight="289.0" prefWidth="418.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label alignment="CENTER" prefHeight="171.0" prefWidth="475.0" text="ALARM GOING OFF" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="38.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#alarmOff" prefHeight="161.0" prefWidth="472.0" style="-fx-background-color: midnightblue; -fx-border-color: black; -fx-border-width: 3;" text="CLICK TO TURN OFF AND REMOVE" textAlignment="CENTER" textFill="WHITE" wrapText="true" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="38.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </GridPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
