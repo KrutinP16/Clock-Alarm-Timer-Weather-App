@@ -17,6 +17,7 @@
     3. Then, go to Arguments tab
     4. Under arguments tab, copy and paste "--module-path "C:\JavaFX\javafx-sdk-18\lib" --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.media" under VM arguments
     5. Apply and Run
+  7. If any other errors come up, email rpharrison02@gmail.com for help
 # How to clone without git in Eclipse: 
   1. Download repo as zip
   2. Extract files
